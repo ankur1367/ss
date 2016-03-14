@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Job{% endblock %}
+{% block container %}
+<div class="container bootstrap snippet space-top">
+    <div class="row">
+       {% for job in object_list %}
+        <div class="post-list">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="picture">
+                        <img alt="Opt wizard thumbnail" src="{{ job.job_logo.url }}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h4>
+                        <a href="{{ job.get_absolute_url }}" class="username">{{ job.job_title|title|truncatewords:6 }}</a>
+                        <label class="label label-info">{{ job.job_category }}</label>
+                    </h4>
+                    <h5>
+                    <i class="fa fa-group"></i>
+                    Vacancy: {{ job.job_vacancy }}</h5>
+
+                    <!-- <h5>
+                    <i class="fa fa-graduation-cap"></i>
+                    Qualification: {{ job.job_qualification }}
+                    </h5> -->
+                    <h5>
+                    <i class="fa fa-flag-checkered"></i>
+                    Position: {{ job.job_post }}
+                    </h5>
+                    <h5>
+                    <i class="fa fa-warning"></i>
+                    Last Date: {{ job.job_last_date|date }}
+                    </h5>
+                    <p class="description">{{ job.job_description|truncatechars:80|safe }}</p>
+
+                </div>
+                <!-- <div class="col-sm-4" data-no-turbolink="">
+                    <a class="btn btn-info btn-download btn-round pull-right makeLoading" href="{{ blog.get_absolute_url }}">
+                    <i class="fa fa-share"></i> View
+                    </a>
+                </div> -->
+            </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+{% endblock %}

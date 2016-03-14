@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<h1>Blog</h1>
+<ul>
+{% for blogs in object_list %}
+    <li>{{ blog.title }} - {{ blog.post_date|date }}</li>
+{% empty %}
+    <li>No Blog yet.</li>
+{% endfor %}
+</ul>
+{% endblock %}

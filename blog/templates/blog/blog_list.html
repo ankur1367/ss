@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Blogs{% endblock %}
+{% block container %}
+<div class="container bootstrap snippet space-top">
+    <div class="row">
+       {% for blog in object_list %}
+        <div class="post-list">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="picture">
+                        <img alt="Opt wizard thumbnail" src="{{ blog.picture.url }}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h4>
+                        <a href="{{ blog.get_absolute_url }}" class="username">{{ blog.title|title|truncatewords:6 }}</a>
+                        <label class="label label-info">{{ blog.category }}</label>
+                    </h4>
+                    <h5>
+                    <i class="fa fa-calendar"></i>
+                    Published on: {{ blog.post_date|date }}
+                    </h5>
+                    <p class="description">{{ blog.description|truncatechars:80|safe }}</p>
+                </div>
+                <!-- <div class="col-sm-4" data-no-turbolink="">
+                    <a class="btn btn-info btn-download btn-round pull-right makeLoading" href="{{ blog.get_absolute_url }}">
+                    <i class="fa fa-share"></i> View
+                    </a>
+                </div> -->
+            </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+{% endblock %}

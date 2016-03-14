@@ -1,0 +1,25 @@
+{% extends "accounts/auth_base.html" %}
+
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% block title %}{{ block.super }}Log In{% endblock %}
+
+{% block form_heading %}Please Log In{% endblock %}
+
+{% block form %}
+  {% crispy form %}
+
+  <div class="form-message">
+    <div class="text-center center-block">
+              <p class="txt-railway">Login with Social Groups</p>
+              <br />
+                <a href="#"><i id="social-fb" class="fa fa-facebook-square fa-4x social"></i></a>
+  	            <a href="{% provider_login_url "twitter" %}"><i id="social-tw" class="fa fa-twitter-square fa-4x social"></i></a>
+  	            <a href="#"><i id="social-gp" class="fa fa-google-plus-square fa-4x social"></i></a>
+
+  </div>
+    <p>
+      Don't have an account? <a href="{% url 'accounts:signup' %}">Sign up</a>.
+    </p>
+  </div>
+{% endblock form %}
